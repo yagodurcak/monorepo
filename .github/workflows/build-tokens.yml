@@ -1,0 +1,49 @@
+name: Build Tokens & UI
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'packages/tokens/tokens/**'
+  pull_request:
+    paths:
+      - 'packages/tokens/tokens/**'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+          cache: 'pnpm'
+
+      - run: pnpm install --frozen-lockfile
+
+      - name: Build tokens
+        run: pnpm --filter @design-system/tokens build
+
+      - name: Build UI library
+        run: pnpm --filter @design-system/ui build
+
+      # Solo commitea en push a main (no en PRs)
+      - name: Commit rebuilt tokens
+        if: github.event_name == 'push'
+        run: |
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git config user.name "github-actions[bot]"
+          git add packages/tokens/build/
+          git diff --staged --quiet || git commit -m "chore: rebuild tokens [skip ci]"
+          git push

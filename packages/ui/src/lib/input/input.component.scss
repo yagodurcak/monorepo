@@ -1,0 +1,79 @@
+@use 'variables' as tokens;
+
+.ds-input-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: tokens.$spacing-1;
+  width: 100%;
+}
+
+.ds-input__label {
+  font-family: tokens.$font-family-base;
+  font-weight: tokens.$font-weight-medium;
+  color: tokens.$input-text-label;
+  line-height: tokens.$font-line-height-normal;
+
+  .ds-input-wrapper--sm & { font-size: tokens.$font-size-sm; }
+  .ds-input-wrapper--md & { font-size: tokens.$font-size-sm; }
+  .ds-input-wrapper--lg & { font-size: tokens.$font-size-md; }
+}
+
+.ds-input__field {
+  font-family: tokens.$font-family-base;
+  font-weight: tokens.$font-weight-regular;
+  color: tokens.$input-text-default;
+  background-color: tokens.$input-bg-default;
+  border: 1px solid tokens.$input-border-default;
+  border-radius: tokens.$input-border-radius;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  width: 100%;
+  box-sizing: border-box;
+
+  &::placeholder {
+    color: tokens.$input-text-placeholder;
+  }
+
+  &:focus {
+    border-color: tokens.$input-border-focus;
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+  }
+
+  .ds-input-wrapper--sm & {
+    padding: tokens.$input-padding-sm-y tokens.$input-padding-sm-x;
+    font-size: tokens.$font-size-sm;
+  }
+
+  .ds-input-wrapper--md & {
+    padding: tokens.$input-padding-md-y tokens.$input-padding-md-x;
+    font-size: tokens.$font-size-md;
+  }
+
+  .ds-input-wrapper--lg & {
+    padding: tokens.$input-padding-lg-y tokens.$input-padding-lg-x;
+    font-size: tokens.$font-size-lg;
+  }
+
+  .ds-input-wrapper--error & {
+    border-color: tokens.$input-border-error;
+
+    &:focus {
+      border-color: tokens.$input-border-error;
+      box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.15);
+    }
+  }
+
+  .ds-input-wrapper--disabled & {
+    background-color: tokens.$input-bg-disabled;
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+}
+
+.ds-input__error-message {
+  font-family: tokens.$font-family-base;
+  font-size: tokens.$font-size-sm;
+  font-weight: tokens.$font-weight-regular;
+  color: tokens.$input-text-error;
+  line-height: tokens.$font-line-height-normal;
+}

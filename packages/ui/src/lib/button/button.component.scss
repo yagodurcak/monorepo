@@ -1,0 +1,87 @@
+@use 'variables' as tokens;
+
+.ds-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: tokens.$font-family-base;
+  font-weight: tokens.$font-weight-semibold;
+  border-radius: tokens.$button-border-radius;
+  cursor: pointer;
+  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+  border: 2px solid transparent;
+  line-height: tokens.$font-line-height-normal;
+
+  // Sizes
+  &--sm {
+    padding: tokens.$button-padding-sm-y tokens.$button-padding-sm-x;
+    font-size: tokens.$font-size-sm;
+  }
+
+  &--md {
+    padding: tokens.$button-padding-md-y tokens.$button-padding-md-x;
+    font-size: tokens.$font-size-md;
+  }
+
+  &--lg {
+    padding: tokens.$button-padding-lg-y tokens.$button-padding-lg-x;
+    font-size: tokens.$font-size-lg;
+  }
+
+  // Variants
+  &--primary {
+    background-color: tokens.$button-bg-primary;
+    color: tokens.$button-text-primary;
+    border-color: tokens.$button-bg-primary;
+
+    &:hover:not(:disabled) {
+      background-color: tokens.$button-bg-primary-hover;
+      border-color: tokens.$button-bg-primary-hover;
+    }
+
+    &:active:not(:disabled) {
+      background-color: tokens.$button-bg-primary-active;
+      border-color: tokens.$button-bg-primary-active;
+    }
+  }
+
+  &--secondary {
+    background-color: tokens.$button-bg-secondary;
+    color: tokens.$button-text-secondary;
+    border-color: tokens.$button-bg-secondary;
+
+    &:hover:not(:disabled) {
+      background-color: tokens.$button-bg-secondary-hover;
+      border-color: tokens.$button-bg-secondary-hover;
+    }
+
+    &:active:not(:disabled) {
+      background-color: tokens.$button-bg-secondary-active;
+      border-color: tokens.$button-bg-secondary-active;
+    }
+  }
+
+  &--outline {
+    background-color: transparent;
+    color: tokens.$button-text-outline;
+    border-color: tokens.$button-border-outline;
+
+    &:hover:not(:disabled) {
+      background-color: tokens.$button-bg-outline-hover;
+      color: tokens.$button-text-outline-hover;
+      border-color: tokens.$button-border-outline-hover;
+    }
+
+    &:active:not(:disabled) {
+      background-color: tokens.$color-action-subtle;
+      color: tokens.$button-text-outline-active;
+      border-color: tokens.$color-action-active;
+    }
+  }
+
+  // Disabled
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}

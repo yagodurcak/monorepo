@@ -1,0 +1,13 @@
+<button
+  class="ds-button"
+  [class.ds-button--primary]="variant() === 'primary'"
+  [class.ds-button--secondary]="variant() === 'secondary'"
+  [class.ds-button--outline]="variant() === 'outline'"
+  [class.ds-button--sm]="size() === 'sm'"
+  [class.ds-button--md]="size() === 'md'"
+  [class.ds-button--lg]="size() === 'lg'"
+  [disabled]="disabled()"
+  (click)="onClick($event)"
+>
+  <ng-content />
+</button>

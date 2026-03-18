@@ -1,0 +1,27 @@
+<div
+  class="ds-input-wrapper"
+  [class.ds-input-wrapper--sm]="size() === 'sm'"
+  [class.ds-input-wrapper--md]="size() === 'md'"
+  [class.ds-input-wrapper--lg]="size() === 'lg'"
+  [class.ds-input-wrapper--error]="error()"
+  [class.ds-input-wrapper--disabled]="disabled()"
+>
+  @if (label()) {
+    <label class="ds-input__label" [for]="inputId">
+      {{ label() }}
+    </label>
+  }
+
+  <input
+    class="ds-input__field"
+    [id]="inputId"
+    [placeholder]="placeholder()"
+    [value]="value()"
+    [disabled]="disabled()"
+    (input)="onInput($event)"
+  />
+
+  @if (error() && errorMessage()) {
+    <span class="ds-input__error-message">{{ errorMessage() }}</span>
+  }
+</div>

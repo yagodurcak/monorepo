@@ -8,56 +8,101 @@ const meta: Meta<ButtonComponent> = {
   argTypes: {
     variant: {
       control: 'select',
-      options: ['primary', 'secondary', 'outline'],
-      description: 'Visual style variant of the button',
+      options: ['fill', 'outline', 'text'],
+      description: 'Estilo visual del botón',
+    },
+    color: {
+      control: 'select',
+      options: ['primary', 'secondary', 'success', 'danger', 'warning', 'outline'],
+      description: 'Color semántico del botón',
     },
     size: {
       control: 'select',
-      options: ['sm', 'md', 'lg'],
-      description: 'Size of the button',
+      options: ['lg', 'sm'],
+      description: 'Tamaño del botón',
     },
     disabled: {
       control: 'boolean',
-      description: 'Whether the button is disabled',
+      description: 'Si el botón está deshabilitado',
     },
   },
   args: {
-    variant: 'primary',
-    size: 'md',
+    variant: 'fill',
+    color: 'primary',
+    size: 'lg',
     disabled: false,
   },
   render: (args) => ({
     props: args,
-    template: `<ds-button [variant]="variant" [size]="size" [disabled]="disabled">Button</ds-button>`,
+    template: `<ds-button [variant]="variant" [color]="color" [size]="size" [disabled]="disabled">Large button</ds-button>`,
   }),
 };
 
 export default meta;
 type Story = StoryObj<ButtonComponent>;
 
-export const Primary: Story = {
-  args: { variant: 'primary' },
+// ─── Fill ───────────────────────────────────────────────────────────────
+export const FillPrimaryLarge: Story = {
+  name: 'Fill / Primary / Large',
+  args: { variant: 'fill', color: 'primary', size: 'lg' },
 };
 
-export const Secondary: Story = {
-  args: { variant: 'secondary' },
+export const FillPrimarySmall: Story = {
+  name: 'Fill / Primary / Small',
+  args: { variant: 'fill', color: 'primary', size: 'sm' },
+  render: (args) => ({
+    props: args,
+    template: `<ds-button [variant]="variant" [color]="color" [size]="size" [disabled]="disabled">Small button</ds-button>`,
+  }),
 };
 
-export const Outline: Story = {
-  args: { variant: 'outline' },
+export const FillSecondary: Story = {
+  name: 'Fill / Secondary',
+  args: { variant: 'fill', color: 'secondary', size: 'lg' },
 };
 
-export const Small: Story = {
-  args: { size: 'sm' },
+export const FillSuccess: Story = {
+  name: 'Fill / Success',
+  args: { variant: 'fill', color: 'success', size: 'lg' },
 };
 
-export const Large: Story = {
-  args: { size: 'lg' },
+export const FillDanger: Story = {
+  name: 'Fill / Danger',
+  args: { variant: 'fill', color: 'danger', size: 'lg' },
 };
 
-export const Disabled: Story = {
-  args: { disabled: true },
+export const FillWarning: Story = {
+  name: 'Fill / Warning',
+  args: { variant: 'fill', color: 'warning', size: 'lg' },
 };
+
+export const FillDisabled: Story = {
+  name: 'Fill / Disabled',
+  args: { variant: 'fill', color: 'primary', size: 'lg', disabled: true },
+};
+
+// ─── Outline ─────────────────────────────────────────────────────────
+export const OutlinePrimary: Story = {
+  name: 'Outline / Primary',
+  args: { variant: 'outline', color: 'primary', size: 'lg' },
+};
+
+export const OutlineOutline: Story = {
+  name: 'Outline / Outline',
+  args: { variant: 'outline', color: 'outline', size: 'lg' },
+};
+
+export const OutlineDisabled: Story = {
+  name: 'Outline / Disabled',
+  args: { variant: 'outline', color: 'primary', size: 'lg', disabled: true },
+};
+
+// ─── Text/Link ────────────────────────────────────────────────────────
+export const TextLink: Story = {
+  name: 'Text / Link',
+  args: { variant: 'text', color: 'primary', size: 'lg' },
+};
+
 
 export const AllVariants: Story = {
   render: () => ({

@@ -1,87 +1,99 @@
-@use 'variables' as tokens;
+@use '../../../../tokens/build/scss/variables' as t;
 
 .ds-button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  font-family: tokens.$font-family-base;
-  font-weight: tokens.$font-weight-semibold;
-  border-radius: tokens.$button-border-radius;
+  gap: 8px;
+  border: none;
+  border-radius: t.$button-size-lg-border-radius;
   cursor: pointer;
-  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
-  border: 2px solid transparent;
-  line-height: tokens.$font-line-height-normal;
+  font-family: t.$button-font-family;
+  font-weight: 500;
+  white-space: nowrap;
+  transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
 
-  // Sizes
-  &--sm {
-    padding: tokens.$button-padding-sm-y tokens.$button-padding-sm-x;
-    font-size: tokens.$font-size-sm;
-  }
-
-  &--md {
-    padding: tokens.$button-padding-md-y tokens.$button-padding-md-x;
-    font-size: tokens.$font-size-md;
-  }
-
+  // ─── Tamaños ────────────────────────────────────────────────────────────────
   &--lg {
-    padding: tokens.$button-padding-lg-y tokens.$button-padding-lg-x;
-    font-size: tokens.$font-size-lg;
+    padding: t.$button-size-lg-padding-y t.$button-size-lg-padding-x;
+    font-size: t.$button-size-lg-font-size;
+    line-height: t.$button-size-lg-line-height;
+    border-radius: t.$button-size-lg-border-radius;
   }
 
-  // Variants
-  &--primary {
-    background-color: tokens.$button-bg-primary;
-    color: tokens.$button-text-primary;
-    border-color: tokens.$button-bg-primary;
+  &--sm {
+    padding: t.$button-size-sm-padding-y t.$button-size-sm-padding-x;
+    font-size: t.$button-size-sm-font-size;
+    line-height: t.$button-size-sm-line-height;
+    border-radius: t.$button-size-sm-border-radius;
+  }
 
-    &:hover:not(:disabled) {
-      background-color: tokens.$button-bg-primary-hover;
-      border-color: tokens.$button-bg-primary-hover;
+  // ─── Estilo Fill ────────────────────────────────────────────────────────────
+  &--fill {
+    &.ds-button--primary {
+      background-color: t.$button-fill-primary-bg;
+      color: t.$button-fill-primary-text;
+      &:hover:not(:disabled) { background-color: t.$button-fill-primary-bg-hover; }
     }
-
-    &:active:not(:disabled) {
-      background-color: tokens.$button-bg-primary-active;
-      border-color: tokens.$button-bg-primary-active;
+    &.ds-button--secondary {
+      background-color: t.$button-fill-secondary-bg;
+      color: t.$button-fill-secondary-text;
+      &:hover:not(:disabled) { background-color: t.$button-fill-secondary-bg-hover; }
+    }
+    &.ds-button--success {
+      background-color: t.$button-fill-success-bg;
+      color: t.$button-fill-success-text;
+      &:hover:not(:disabled) { filter: brightness(0.9); }
+    }
+    &.ds-button--danger {
+      background-color: t.$button-fill-danger-bg;
+      color: t.$button-fill-danger-text;
+      &:hover:not(:disabled) { filter: brightness(0.9); }
+    }
+    &.ds-button--warning {
+      background-color: t.$button-fill-warning-bg;
+      color: t.$button-fill-warning-text;
+      &:hover:not(:disabled) { filter: brightness(0.95); }
     }
   }
 
-  &--secondary {
-    background-color: tokens.$button-bg-secondary;
-    color: tokens.$button-text-secondary;
-    border-color: tokens.$button-bg-secondary;
-
-    &:hover:not(:disabled) {
-      background-color: tokens.$button-bg-secondary-hover;
-      border-color: tokens.$button-bg-secondary-hover;
-    }
-
-    &:active:not(:disabled) {
-      background-color: tokens.$button-bg-secondary-active;
-      border-color: tokens.$button-bg-secondary-active;
-    }
-  }
-
+  // ─── Estilo Outline ─────────────────────────────────────────────────────────
   &--outline {
-    background-color: transparent;
-    color: tokens.$button-text-outline;
-    border-color: tokens.$button-border-outline;
-
-    &:hover:not(:disabled) {
-      background-color: tokens.$button-bg-outline-hover;
-      color: tokens.$button-text-outline-hover;
-      border-color: tokens.$button-border-outline-hover;
+    background-color: #ffffff;
+    &.ds-button--primary {
+      border: 1px solid t.$button-outline-primary-border;
+      color: t.$button-outline-primary-text;
+      &:hover:not(:disabled) {
+        background-color: t.$button-outline-primary-bg-hover;
+        color: #ffffff;
+      }
     }
-
-    &:active:not(:disabled) {
-      background-color: tokens.$color-action-subtle;
-      color: tokens.$button-text-outline-active;
-      border-color: tokens.$color-action-active;
+    &.ds-button--color-outline {
+      border: 1px solid t.$button-outline-outline-border;
+      color: t.$button-outline-outline-text;
+      &:hover:not(:disabled) {
+        background-color: t.$button-outline-outline-bg-hover;
+        color: #ffffff;
+        border-color: t.$button-outline-outline-bg-hover;
+      }
     }
   }
 
-  // Disabled
+  // ─── Estilo Text/Link ───────────────────────────────────────────────────────
+  &--text {
+    background-color: transparent;
+    border: none;
+    color: t.$button-text-primary-color;
+    text-decoration: underline;
+    padding-left: 0;
+    padding-right: 0;
+    &:hover:not(:disabled) { opacity: 0.8; }
+  }
+
+  // ─── Estado Disabled ────────────────────────────────────────────────────────
   &:disabled {
     opacity: 0.5;
     cursor: not-allowed;
+    pointer-events: none;
   }
 }

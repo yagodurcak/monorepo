@@ -1,0 +1,12 @@
+{
+  "name": "@design-system/tokens",
+  "version": "1.0.0",
+  "description": "Motor de Design Tokens para e-SIDIF",
+  "main": "build/scss/_variables.scss",
+  "scripts": {
+    "build": "style-dictionary build"
+  },
+  "devDependencies": {
+    "style-dictionary": "^3.0.0"
+  }
+}

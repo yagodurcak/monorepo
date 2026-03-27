@@ -4,12 +4,14 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
+  /* Reemplazamos 8px por el token */
+  gap: t.$spacing-small; 
   border: none;
   border-radius: t.$button-size-lg-border-radius;
   cursor: pointer;
   font-family: t.$button-font-family;
-  font-weight: 500;
+  /* Reemplazamos 500 por el token */
+  font-weight: t.$font-weight-medium; 
   white-space: nowrap;
   transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
 
@@ -43,7 +45,7 @@
     &.ds-button--success {
       background-color: t.$button-fill-success-bg;
       color: t.$button-fill-success-text;
-      &:hover:not(:disabled) { filter: brightness(0.9); }
+      &:hover:not(:disabled) { filter: brightness(0.9); } // Nota: filters y opacidades a futuro también deberían ser tokens
     }
     &.ds-button--danger {
       background-color: t.$button-fill-danger-bg;
@@ -59,13 +61,16 @@
 
   // ─── Estilo Outline ─────────────────────────────────────────────────────────
   &--outline {
-    background-color: #ffffff;
+    /* Reemplazamos #ffffff por el token de la paleta */
+    background-color: t.$palette-brand-white; 
+    
     &.ds-button--primary {
       border: 1px solid t.$button-outline-primary-border;
       color: t.$button-outline-primary-text;
       &:hover:not(:disabled) {
         background-color: t.$button-outline-primary-bg-hover;
-        color: #ffffff;
+        /* Reemplazamos #ffffff por el token */
+        color: t.$palette-brand-white;
       }
     }
     &.ds-button--color-outline {
@@ -73,7 +78,8 @@
       color: t.$button-outline-outline-text;
       &:hover:not(:disabled) {
         background-color: t.$button-outline-outline-bg-hover;
-        color: #ffffff;
+        /* Reemplazamos #ffffff por el token */
+        color: t.$palette-brand-white;
         border-color: t.$button-outline-outline-bg-hover;
       }
     }
